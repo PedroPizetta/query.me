@@ -1,5 +1,5 @@
 <h1 align="center">Oi 👋, Eu sou o Pedro Pizetta</h1>
-<h3 align="center">Apaixonado por ciência e análise de dados no mundo digital</h3>
+<h3 align="center">Apaixonado por ciência e análise de dados e tecnologias digitais </h3>
 
 - 🔭 Atualmente estou trabalhando, e estudando **Análise e Desenvovimento de Sistemas**
 

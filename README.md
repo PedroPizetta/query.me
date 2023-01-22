@@ -1,5 +1,5 @@
 <h1 align="center">Oi 👋, Eu sou o Pedro Pizetta</h1>
-<h3 align="center">Apaixonado por ciência e análise de dados e tecnologias digitais </h3>
+<h3 align="center">Apaixonado por ciência e análise de dados e tecnologias digitais</h3>
 
 - 🔭 Atualmente estou trabalhando, e estudando **Análise e Desenvovimento de Sistemas**
 
@@ -12,6 +12,7 @@
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://linkedin.com/in/pedro-pizetta-47510760" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="pedro-pizetta-47510760" height="30" width="40" /></a>
+<a href="https://instagram.com/pedro.luna84" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="pedro.luna84" height="30" width="40" /></a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>

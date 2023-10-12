@@ -40,7 +40,7 @@ GROUP BY ClienteID;
 
 ---Manipulação de Dados em Lotes: Usar operações de lote para realizar operações em vários registros de uma só vez.
 
-Manipulação de Dados JSON: Trabalhar com dados JSON, incluindo funções de consulta e manipulação de dados JSON.
+--Manipulação de Dados JSON: Trabalhar com dados JSON, incluindo funções de consulta e manipulação de dados JSON.
 
 
 SELECT JSON_VALUE(Dados, '$.Nome') AS Nome
@@ -66,7 +66,9 @@ FROM SuaTabela;
 
 SELECT CAST(NumeroInteiro AS DECIMAL(10, 2)) AS NumeroDecimal
 FROM SuaTabela;
-Converter uma string em data:
+
+
+--Converter uma string em data:
 
   --Se você tiver uma string que representa uma data, pode usar CAST para convertê-la em um tipo de dados de data:
 
@@ -135,7 +137,7 @@ FROM Pessoas;
 
 -----CTE------
 
-Exemplo 1 - CTE Simples:
+--Exemplo 1 - CTE Simples:
 
 
 -- Definir uma CTE para listar clientes com mais de 30 anos
@@ -146,10 +148,11 @@ Exemplo 1 - CTE Simples:
     WHERE Idade > 30
 )
 -- Usar a CTE em uma consulta
+   
 SELECT Nome, Idade
 FROM ClientesMaisVelhos;
 
-Neste exemplo, a CTE "ClientesMaisVelhos" é usada para listar clientes com mais de 30 anos. A consulta principal então seleciona dados dessa CTE.
+--Neste exemplo, a CTE "ClientesMaisVelhos" é usada para listar clientes com mais de 30 anos. A consulta principal então seleciona dados dessa CTE.
 
 ---Exemplo 2 - CTE Recursiva:
 

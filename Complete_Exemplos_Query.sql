@@ -188,3 +188,53 @@ Estatisticas AS (
 SELECT D.*, E.MediaCompras, E.MaiorCompra
 FROM DadosClientes D
 CROSS JOIN Estatisticas E;
+
+
+--Exemplo 1 - Pivot Simples:
+
+--Suponha que você tenha uma tabela que armazena dados de vendas por mês. Você pode usar PIVOT para transformar esses dados em colunas, mostrando as vendas para cada mês em colunas separadas.
+
+
+SELECT *
+FROM Vendas
+PIVOT (
+    SUM(ValorVenda)
+    FOR Mes IN ([Janeiro], [Fevereiro], [Março])
+) AS PivotTable;
+
+--Neste exemplo, os valores de vendas por mês são transformados em colunas com a soma das vendas para cada mês.
+
+--Exemplo 2 - Pivot com Valores Dinâmicos:
+
+--Às vezes, você pode não saber quais valores específicos precisa para o PIVOT com antecedência. Nesse caso, você pode usar uma consulta dinâmica para construir a consulta PIVOT.
+
+
+DECLARE @ColunasMeses NVARCHAR(MAX)
+SELECT @ColunasMeses = STUFF((SELECT distinct ',' + QUOTENAME(Mes) 
+            FROM Vendas
+            FOR XML PATH(''), TYPE
+            ).value('.', 'NVARCHAR(MAX)') 
+        ,1,1,'')
+
+DECLARE @sql NVARCHAR(MAX)
+SET @sql = N'
+SELECT *
+FROM Vendas
+PIVOT (
+    SUM(ValorVenda)
+    FOR Mes IN (' + @ColunasMeses + ')
+) AS PivotTable;'
+
+EXEC sp_executesql @sql;
+
+----Este exemplo constrói a lista de meses dinamicamente e, em seguida, executa a consulta PIVOT.
+
+---Exemplo 3 - Pivot com Função de Agregação:
+
+--Você pode usar funções de agregação, como SUM, COUNT, AVG, para resumir os dados enquanto faz a operação PIVOT.
+
+SELECT *
+FROM Vendas
+PIVOT (
+    SUM(ValorVenda) FOR Mes IN ([Janeiro], [Fevereiro], [Março])
+) AS PivotTable;

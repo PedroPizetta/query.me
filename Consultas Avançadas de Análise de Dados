@@ -1,0 +1,49 @@
+-- Seleção de Dados
+SELECT 
+    Nome, Idade
+FROM 
+    Clientes
+WHERE 
+    Cidade = 'São Paulo'
+ORDER BY 
+    Idade;
+
+-- Junções de Tabelas
+SELECT 
+    Pedidos.ID, Clientes.Nome
+FROM 
+    Pedidos
+INNER JOIN 
+    Clientes ON Pedidos.ClienteID = Clientes.ID;
+
+-- Agregação de Dados
+SELECT 
+    Categoria, AVG(Preco) AS PrecoMedio
+FROM 
+    Produtos
+GROUP BY 
+    Categoria;
+
+-- Atualização de Dados
+UPDATE 
+    Produtos
+SET 
+    Preco = Preco * 1.1
+WHERE 
+    Categoria = 'Eletrônicos';
+
+-- Inserção de Dados
+INSERT INTO 
+    Pedidos (ClienteID, DataPedido, Total)
+VALUES 
+    (101, '2023-09-15', 500.00);
+
+-- Criação de Visualizações
+CREATE VIEW 
+    VendasTotais AS
+SELECT 
+    ClienteID, SUM(Total) AS TotalVendas
+FROM 
+    Pedidos
+GROUP BY 
+    ClienteID;

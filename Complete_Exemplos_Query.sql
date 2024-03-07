@@ -241,3 +241,38 @@ FROM Vendas
 PIVOT (
     SUM(ValorVenda) FOR Mes IN ([Janeiro], [Fevereiro], [Março])
 ) AS PivotTable;
+
+
+-- Consulta complexa para análise de vendas por região e categoria de produto
+
+WITH VendasPorRegiao AS (
+    SELECT
+        R.Nome AS Regiao,
+        P.Categoria,
+        SUM(V.Quantidade * V.PrecoUnitario) AS TotalVendas
+    FROM Vendas V
+    JOIN Produtos P ON V.ProdutoID = P.ProdutoID
+    JOIN Regioes R ON V.RegiaoID = R.RegiaoID
+    WHERE V.DataVenda BETWEEN '2023-01-01' AND '2023-12-31'
+    GROUP BY R.Nome, P.Categoria
+),
+RankingPorRegiao AS (
+    SELECT
+        Regiao,
+        Categoria,
+        TotalVendas,
+        ROW_NUMBER() OVER (PARTITION BY Regiao ORDER BY TotalVendas DESC) AS Ranking
+    FROM VendasPorRegiao
+)
+SELECT
+    Regiao,
+    Categoria,
+    TotalVendas,
+    CASE
+        WHEN Ranking = 1 THEN 'Melhor Categoria'
+        WHEN Ranking = 2 THEN 'Segunda Melhor Categoria'
+        WHEN Ranking = 3 THEN 'Terceira Melhor Categoria'
+        ELSE 'Outras Categorias'
+    END AS PosicaoRanking
+FROM RankingPorRegiao
+WHERE Ranking <= 3;
